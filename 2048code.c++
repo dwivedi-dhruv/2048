@@ -64,14 +64,16 @@ bool canDoMove(int line ,int column, int nextLine , int nextColumn)
 void printGUI()                                             // to give values of the cells after the valid move
 {
 	system("cls");
-	for(int i=0;i<4;i++){
-		for(int j=0;j<4;j++){
+	for(int i=0;i<4;i++)
+	{
+		for(int j=0;j<4;j++)
+		{
 			if(board[i][j]==0)
-	    	cout <<setw(4)<<"*";
-	    	else
-    		cout <<setw(4) <<board[i][j] ;
+			cout <<setw(4)<<"*";
+			else
+			cout <<setw(4) <<board[i][j] ;
 		}
-    	cout << endl;
+    		cout << endl;
 	}
 	
 	
@@ -102,18 +104,18 @@ void applyMove(int direction)
 	
 	do{
 		
-	movePossible=0;
-	for(int i=startLine;i>=0 && i<4 ; i+=lineStep)
-    	for(int j=startColumn ;j>=0&& j<4;j+=columnStep)
-    	{
-     		int nextI=i+dirLine[direction] , nextJ=j+dirColumn[direction];
-    		 if(canDoMove(i,j,nextI,nextJ) && board[i][j])
-    		 {
-    		 	board[nextI][nextJ]+= board[i][j];
-    		 	board[i][j]=0;
-    		 	movePossible=canAddPiece=1;
+		movePossible=0;
+		for(int i=startLine;i>=0 && i<4 ; i+=lineStep)
+		for(int j=startColumn ;j>=0&& j<4;j+=columnStep)
+		{
+			int nextI=i+dirLine[direction] , nextJ=j+dirColumn[direction];
+			 if(canDoMove(i,j,nextI,nextJ) && board[i][j])
+			 {
+				board[nextI][nextJ]+= board[i][j];
+				board[i][j]=0;
+				movePossible=canAddPiece=1;
 			 }
-			 
+
 		}
 		printGUI();               // to show the changing values
 	}
@@ -134,8 +136,8 @@ int main()
 	//   Controllers
 	//   s--> to move the cells downward
 	//   d--> to ove the cells right
-    //   w--> to move the cells upward
-    //   a--> to ove the cells left  
+        //   w--> to move the cells upward
+        //   a--> to ove the cells left  
 	commandToDir['s']=0;      
 	commandToDir['d']=1;      
 	commandToDir['w']=2;        
@@ -145,20 +147,19 @@ int main()
 	while(true)
 	{
 		printGUI();
-    	char command;
-        cin >> command;
-        
-        if(command=='q')
-        break;
-        else if(command=='n')
-        newGame();
-        else
-        {
-        	int currentDirection=commandToDir[command];
-        	applyMove(currentDirection);
+		char command;
+		cin >> command;
+
+		if(command=='q')
+		break;
+		else if(command=='n')
+		newGame();
+		else
+		{
+			int currentDirection=commandToDir[command];
+			applyMove(currentDirection);
 		}
+		
 	}
-	
-	
 	
 }
