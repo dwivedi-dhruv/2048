@@ -152,11 +152,13 @@ int main()
         break;
         else if(command=='n')
         newGame();
-        else
+        else if(command=='s'||command=='d'||command=='w'||command=='a')
         {
         	int currentDirection=commandToDir[command];
         	applyMove(currentDirection);
 		}
+		else
+			cout<<"Invalid command";
 	}
 	
 	
